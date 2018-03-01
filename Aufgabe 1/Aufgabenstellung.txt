@@ -1,0 +1,27 @@
+Zur Verwaltung von Ergebnissen (Testergebnisse, Sportwettkämpfe, ...) ist die Klasse Result zu erstellen. Sie speichert einen Namen und die dazugehörigen Teilergebnisse (Anzahl wird beim erzeugen festgelegt). Die öffentliche Schnittstelle von Result besteht mindestens aus:
+
+//constructor for setting the name and the number of scores
+public Result (String name, int scores)
+
+//sets for score which the given amount
+public void setScore (int which, double amount)
+
+//returns score which
+public double getScore (int which)
+
+//returns the total score
+public double getTotalScore ()
+
+//returns a string representation of the name combinded with all
+// scores and the total score
+public String toString ()
+
+Die Methode toString() soll einen String in folgender Form zurückgeben (wenn z.B. 5 Teilergebnisse vorhanden sind):
+
+MeinName: 5.0 / 3.5 / 10.0 / 0.0 / 2.75 = 21.25
+
+Die Klasse Result soll auch das Interface Measurable (siehe V-Teil) implementieren.
+
+Erstellen Sie mindestens noch eine weitere, sinnvolle Klasse, die das Interface Measurable implementiert.
+
+Erstellen Sie auch ein Demoprogramm, gennannt MyMeasureableDemo welches die eigentliche Funktionalität der Klasse zeigt und auch die Anwendung des Interface Measurable.
