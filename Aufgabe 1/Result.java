@@ -1,3 +1,5 @@
+\\ ist nur mal ein erster Versuch
+
 public class Result implements Measurable{
    String name;
    int score;
