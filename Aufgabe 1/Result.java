@@ -1,13 +1,10 @@
-\\ ist nur mal ein erster Versuch
-
 public class Result implements Measurable{
-   String name;
-   int score;
-   double[] scoresarr = new double[score];
+   String name1;
+   double[] scoresarr;
    
    public Result(String name, int scores){
-      this.name=name;
-      score=scores;
+      name1=name;
+      scoresarr = new double[scores];
    }
    
    public void setScore(int which, double amount){
@@ -20,7 +17,7 @@ public class Result implements Measurable{
    
    public double getTotalScore(){
       double sum = 0;
-      for(int i = 0; i<score; i++){
+      for(int i = 0; i<scoresarr.length; i++){
          sum=sum+scoresarr[i];
       }
       return sum;
@@ -28,10 +25,14 @@ public class Result implements Measurable{
    
    public String toString(){
       String s =  "";
-      for(int i = 0; i<score; i++){
+      for(int i = 0; i<scoresarr.length; i++){
+         if( i ==0){
+            s=s + scoresarr[i];
+         } else{
          s=s +" /"+ scoresarr[i];
+         }
       }
-      return name + ": "+ s + " = " + getTotalScore();
+      return name1 + ": "+ s + " = " + getTotalScore();
    }
    
    public double getMeasure (){
