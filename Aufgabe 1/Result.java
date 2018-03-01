@@ -1,6 +1,6 @@
 public class Result implements Measurable{
-   String name1;
-   double[] scoresarr;
+   private String name1;
+   private double[] scoresarr;
    
    public Result(String name, int scores){
       name1=name;
