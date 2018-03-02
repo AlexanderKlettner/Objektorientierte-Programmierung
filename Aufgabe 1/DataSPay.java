@@ -1,7 +1,7 @@
 /*************************************************** 
 Class Results: simple class for Data Science pay
 
-UV Objektorientierte Programmierung / S.Mueller
+UV Objektorientierte Programmierung / #TeamDataSciene
 ***************************************************/
 
 public class DataSPay implements Measurable {
