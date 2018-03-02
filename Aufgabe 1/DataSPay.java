@@ -50,10 +50,14 @@ public class DataSPay implements Measurable {
 
    }
    
-   public double getAveragePay(int number){
+   public double getAveragePay(){
       double average = 0;
-      average = getTotalPay()/number;
-      return average;
+      if(number != 0){
+         average = getTotalPay()/number;
+         return average;
+      }else{
+         return 0.0;
+      }
    }
    
    public double getMonthlyAverage(int number){
