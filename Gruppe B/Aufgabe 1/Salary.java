@@ -1,4 +1,4 @@
-//fehlt noch
+// 00912416 Klemens Kurtz; 
 public class Salary implements Measurable {
 	
 	private String job;
