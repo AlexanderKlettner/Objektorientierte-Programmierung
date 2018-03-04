@@ -1,4 +1,5 @@
-// 00912416 Klemens Kurtz; 
+// group consists of: Steger Marcel, Kurtz Klemens, Thiel Konstantin
+
 
 public interface Measurable {
 
