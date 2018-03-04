@@ -1,4 +1,6 @@
-// 00912416 Klemens Kurtz; 
+// group consists of: Steger Marcel, Kurtz Klemens, Thiel Konstantin
+
+
 public class Salary implements Measurable {
 	
 	private String job;
@@ -16,41 +18,45 @@ public class Salary implements Measurable {
 	}
 
 
-	//How many elements has array?
-	
+	//How many elements deos the array have?
 	public int arrayInd(){
 		int len = this.salary.length;
 		return len;
 	}
 
+	
 	// Interface
 	public double getMeasure() {
 		return getMeanSalary();
 	}
 
+	
 	//sets for score which the given amount
 	public void setSalary (int which, double salary, String name) {
-		this.salary[which] = salary;
-		this.name[which] = name;
+		
+		if((which >= 0) && (which < this.anzahl)) {
+			this.salary[which] = salary;
+			this.name[which] = name;
+		}
 	}
 
+	
 	//returns score which
 	public double getSalary (int which){
-		// which < this.score, weil score anzahl der Scores ist, aber dann out.ouf.arraybounds waere
-		// da das erste Array element ja mit 0 indiziert ist
-		// Bsp: Scores = 5, dann gibt es ein 5 elementiges Array
-		// a[0], a[1], a[2], a[3] und a[4]
-		// aber in a[5] zu suchen, geht nicht. deshalb fange das ab, falls der User den Score haben will
-		if(which < this.anzahl) { 
+		
+		if((which >= 0) && (which < this.anzahl)) { 
 			return this.salary[which];
 		}
 		else return(0);
 	}
 
+	
 	public String jobName() {
 		//returns the job name of the object
 		return this.job;
 	}
+	
+	
 	//returns the total score
 	public double getMeanSalary(){
 		double sumSalary = 0.0;
@@ -67,8 +73,8 @@ public class Salary implements Measurable {
 		return meanSalary;
 	}
 
-	//returns a string representation of the name combinded with all
-	// scores and the total score
+	
+	//returns a string representation 
 	public String toString(){
 		
 		if(this.anzahl == 0) {
@@ -81,8 +87,6 @@ public class Salary implements Measurable {
 		}
 		end += "\n Mean Annual Salary: " + this.getMeanSalary();
 		return(end);
-		
-
 	}
 
 }
