@@ -10,9 +10,9 @@ public class MyMeasureableDemo {
 	         result.setScore(i, werte[i]);
 	      }
 	         
-	      System.out.println(result.toString());
+	      //System.out.println(result.toString());
 	      
-	      // Anwendung des Interface Measurable:
+	      // Anwendung des Interface Measurable fuer result::
 	      System.out.println(result.getMeasure()); 
 	      
 	      
@@ -25,7 +25,11 @@ public class MyMeasureableDemo {
 	    	  salary.setSalary(i, pay, "mySalary");
 	      }
 	      
-	      System.out.println(salary.getMeanSalary());
+	     // System.out.println(salary.getMeanSalary());
+	      
+	      // Anwendung des Interface Measurable fuer salary:
+	      System.out.println(salary.getMeasure());
+
 	      
 	   }
 }
