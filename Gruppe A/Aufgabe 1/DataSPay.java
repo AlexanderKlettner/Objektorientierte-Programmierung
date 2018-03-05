@@ -1,19 +1,17 @@
 /*************************************************** 
 Class Results: simple class for Data Science pay
-
 UV Objektorientierte Programmierung / #TeamDataSciene
+Team: Simone Müller, Alexander Klettner
 ***************************************************/
 
 public class DataSPay implements Measurable {
 
    private String industry; 
-   private int number;
    private double[] pay;
 	
 	//----------constructors
 	public DataSPay (String industry, int number){
 		this.industry = industry;
-		this.number = number;
       pay = new double[number];
 	}
 	
@@ -52,8 +50,8 @@ public class DataSPay implements Measurable {
    
    public double getAveragePay(){
       double average = 0;
-      if(number != 0){
-         average = getTotalPay()/number;
+      if(pay.length != 0){
+         average = getTotalPay()/pay.length;
          return average;
       }else{
          return 0.0;
@@ -62,9 +60,21 @@ public class DataSPay implements Measurable {
    
    public double getMonthlyAverage(int number){
       double averagemonth = 0;
-      averagemonth = getTotalPay()/(number*14);
+      averagemonth = getTotalPay()/(pay.length*14);
       return averagemonth;
    
+   }
+   
+      public String toString(){
+      String s =  "";
+      for(int i = 0; i<pay.length; i++){
+         if( i ==0){
+            s=s + pay[i];
+         } else{
+         s=s +" /"+ pay[i];
+         }
+      }
+      return industry + ": "+ s + " = " + getAveragePay();
    }
 
 }
