@@ -1,13 +1,22 @@
+/*************************************************** 
+Class for Testresults + Names
+UV Objektorientierte Programmierung / #TeamDataSciene
+Team: Simone Müller, Alexander Klettner
+***************************************************/
+
 public class Result implements Measurable{
    private String name1;
    private double[] scoresarr;
-   private int scores;
+   
+// Konstruktor:   
    
    public Result(String name, int scores){
       name1=name;
       scoresarr = new double[scores];
    }
-   
+
+// Methoden:
+
    public void setScore(int which, double amount){
       scoresarr[which] = amount;
    }
