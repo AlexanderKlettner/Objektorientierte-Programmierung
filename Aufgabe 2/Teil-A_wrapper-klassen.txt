@@ -1,0 +1,22 @@
+Klemens Kurtz
+
+Eine wrapper-klasse wird genutzt, um einen primitiven Datentyp (z.B. int, String, long, ...)  in ein Objekt und vice-versa umzuwandeln.
+Wrapper-klassen bieten dabei Servicemethoden die uns helfen den Code einfacher und übersichtlicher zu gestalten.
+
+Autoboxing ist die automatische Umwandlung eines primitiven Datentyps in ein Objekt der wrapper-klasse. 
+
+Der Java compiler nutzt autoboxing wenn:
+1. Ein primitiver Datentyp an eine Methode der wrapper-klasse übergeben wird, die ein objekt der wrapper-klasse erwartet.
+2. Wenn ein primitiver Datentyp einer Variable aus der dazugehörigen wrapper-klasse zugewiesen wird.
+
+Bsp:
+import java.util.ArrayList;
+public class Demo{
+	public static void main(String[] args){
+   		
+		//Autoboxing example:
+		List<Integer> listIntegers = new ArrayListy<>();
+		for(int I = 1; i < 10; i += 2)
+  		   listIntegers.add(i); // at compile time, this will be converted to listIntegers.add(Integer.valueOf(i)); This is called autoboxing.
+	}
+}
