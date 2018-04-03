@@ -1,0 +1,66 @@
+/*************************************************** 
+Demoprogramm MyQueue:
+
+UV Objektorientierte Programmierung 
+
+***************************************************/
+import java.util.*;
+
+public class MyQueueDemo {
+
+   public static void main(String[] args){
+   
+   MyQueue<Integer> intQueue = new MyQueue<Integer>();
+   
+   Random rand = new Random();
+   for (int j = 0; j<1000; j++){
+    int pick = rand.nextInt(500)+1;
+    intQueue.enqueue(pick);
+   }
+   
+   
+   
+   MyQueue<String> stringQueue = new MyQueue<String>(); 
+   stringQueue.enqueue(createWord(1000));
+   
+   
+   
+   MyQueue<Double> doubQueue = new MyQueue<Double>();
+   
+   for(int i = 0; i<1000; i++){
+         doubQueue.enqueue((Math.random()*100));
+      }
+      
+   randomOper(stringQueue);
+   }
+
+    
+  public static String createWord(int laenge) {
+        String SALTCHARS = "abcdefghijklmnopqrstuvwxyz";
+        StringBuilder salt = new StringBuilder();
+        Random rnd = new Random();
+        while (salt.length() < laenge) { // length of the random string.
+            int index = (int) (rnd.nextFloat() * SALTCHARS.length());
+            salt.append(SALTCHARS.charAt(index));
+        }
+        String saltStr = salt.toString();
+        return saltStr;
+
+    }
+    
+  	public static void randomOper(MyQueue k) {
+      
+      int zuf = 1 + (int)(Math.random() * ((3 - 1) + 1));
+
+		if(zuf == 1) {
+			k.enqueue(1);
+		}
+		if(zuf == 2) {
+			k.dequeue();
+		}
+		if(zuf == 3) {
+			k.peek();
+		}
+    }
+      
+}
