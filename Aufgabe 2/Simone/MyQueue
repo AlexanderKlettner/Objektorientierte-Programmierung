@@ -3,47 +3,51 @@ Class MyQueue<T>:
 
 UV Objektorientierte Programmierung 
 
+
 ***************************************************/
 import java.util.*;
 
 public class MyQueue<T> {
     
-    private T content;
-    ArrayList<T> intList = new ArrayList<>();
-    
+    ArrayList<T> queue = new ArrayList<>();      
+   
     //constructor: creats an empty queue
     public MyQueue() {
-      content = null;
+      this.queue = new ArrayList<T>();
     }
         
     //inserts item at the end of this queue
     public void enqueue (T item){
-      intList.add(item);
+      queue.add(item);
     }
 
     //returns the first item of this queue and deletes it
     public T dequeue (){
-      T temp = intList.get(0);
-      intList.remove(0);
+      T temp = queue.get(0);  
+      queue.remove(0);
       return temp;
+
+      //kuerzer: return queue.remove(0); (remove gibt das geloeschte objekt zurueck, muessen es nur noch mit return weitergeben)
     }
     
     //returns the first item of this queue without deleting
     public T peek (){
-      return intList.get(0);
+      return queue.get(0);
     }
     
     //returns true if this queue contains no elements
     public boolean isEmpty(){
-      if(intList.isEmpty()){
+      if(queue.isEmpty()){     
          return true;}
       else{
          return false;}
+
+        //kÃ¼rzer: return queue.isEmpty();
     }
     
     //returns the number of elements in this queue
     public int size(){
-      return intList.size();
+      return queue.size();
     }
     
 }
