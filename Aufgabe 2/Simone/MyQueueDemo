@@ -21,8 +21,10 @@ public class MyQueueDemo {
    
    
    MyQueue<String> stringQueue = new MyQueue<String>(); 
-   stringQueue.enqueue(createWord(1000));
    
+   for(int p = 0; p<1000; p++){
+      stringQueue.enqueue(createWord(10));   
+   }
    
    
    MyQueue<Double> doubQueue = new MyQueue<Double>();
@@ -31,15 +33,28 @@ public class MyQueueDemo {
          doubQueue.enqueue((Math.random()*100));
       }
       
+      
+      
+   for(int n = 0; n<1000; n++){   
+   randomOper(intQueue);
+   }
+  
+   for(int n = 0; n<1000; n++){   
    randomOper(stringQueue);
    }
+  
+   for(int n = 0; n<1000; n++){   
+   randomOper(doubQueue);
+   }
+   
+  }
 
     
   public static String createWord(int laenge) {
         String SALTCHARS = "abcdefghijklmnopqrstuvwxyz";
         StringBuilder salt = new StringBuilder();
         Random rnd = new Random();
-        while (salt.length() < laenge) { // length of the random string.
+        while (salt.length() < laenge) { 
             int index = (int) (rnd.nextFloat() * SALTCHARS.length());
             salt.append(SALTCHARS.charAt(index));
         }
@@ -50,8 +65,7 @@ public class MyQueueDemo {
     
   	public static void randomOper(MyQueue k) {
       
-      int zuf = 1 + (int)(Math.random() * ((3 - 1) + 1));
-
+      int zuf = 1 + (int)(Math.random() * 3); 
 		if(zuf == 1) {
 			k.enqueue(1);
 		}
