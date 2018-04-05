@@ -4,11 +4,18 @@ import java.util.*;
 public class MyQueue<T> {
 	
 	private List<T> queue; // just Declaration, no initialization
+//	private final Class<T> type;
 	
 	//constructor, creats an empty queue
 	public MyQueue() {
 		this.queue = new ArrayList<T>();
+//		this.type = type;
 	}
+	
+//	public Class <T> getType() {
+//		return this.type;
+//	}
+//	
 	
 	
 	//inserts item at the end of this queue
@@ -56,4 +63,9 @@ public class MyQueue<T> {
 		
 		return listString;
 	}
+	
+	
+
+
+	
 }
