@@ -1,4 +1,4 @@
-Klemens Kurtz, Konstantin Thiel
+﻿Klemens Kurtz, Konstantin Thiel, Marcel Steger
 
 Eine Wrapper-Klasse wird genutzt, um einen primitiven Datentyp (z.B. int, long, ...)  in ein Objekt und vice-versa umzuwandeln.
 Wrapper-Klassen bieten dabei Servicemethoden die uns helfen den Code einfacher und übersichtlicher zu gestalten.
