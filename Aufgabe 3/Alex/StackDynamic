@@ -54,15 +54,17 @@ public class StackDynamic<E>{
 
 //returns a String-representation of this stack as
 //[item1, item2, ...] with item1 as the top item
-   public String toString (){
+  public String toString (){
       Node p = stack;
       String s = "";
       
       while(p!=null){
-         s = "["+ s + ", " + p.data +"]";
+         if(p.next != null){
+         s = s + p.data + ", ";}
+         else{ s = s + p.data;}
          p=p.next;
       }
-      return s;
+      return "[" + s + "]";
    }
          
 
