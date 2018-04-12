@@ -1,0 +1,87 @@
+
+public class StackDynamic<E>{
+   private Node<E> stack;
+
+//constructor, creats an empty stack
+   public StackDynamic () {
+      stack = null;
+   }
+
+//inserts item at the top of this stack
+   public void push (E item){
+      Node<E> h = new Node (item);
+      h.next = stack;
+      stack = h;
+   }
+
+//returns the top item of this stack and removes it
+   public E pop (){
+      Node<E> h = stack;
+      stack = null;
+      return h.data;
+   }
+
+//returns the top item of this stack without removing it
+   public E peek (){
+      return stack.data;
+   }
+
+//returns true if this stack contains no elements
+   public boolean isEmpty(){
+      return stack == null;
+   }
+
+//additional useful methods
+
+//returns the position of item on this stack, the top positon has
+//count 1, returns -1 if item is not on this stack; 
+//compares items with equals!
+   public int contains (E item){
+      Node h = stack;
+      Node prev = null;
+      int i = 0;
+      
+      while(h != null && h.data != item){
+         prev = h;
+         h = h.next;
+         i = i + 1;
+      }
+      
+      if(h.data == item){
+         return i;
+      } else { return -1;}
+    }
+
+//returns a String-representation of this stack as
+//[item1, item2, ...] with item1 as the top item
+   public String toString (){
+      Node p = stack;
+      String s = "";
+      
+      while(p!=null){
+         s = "["+ s + ", " + p.data +"]";
+         p=p.next;
+      }
+      return s;
+   }
+         
+
+//deletes an item on this stack
+
+   public void delete(E item){
+     Node p = stack;
+     Node prev = null;
+    
+      while(p != null && p.data != item){
+         prev = p;
+         p = p.next;
+      }
+    
+    //p == null || p.data == d
+      if(p != null)
+         if(p == stack)
+            stack = p.next;
+         else
+            prev.next = p.next;
+  }
+}
