@@ -1,0 +1,58 @@
+import java.util.*;
+
+public class StackArray<E>{
+   private ArrayList<E> list;
+
+//constructor, creats an empty stack
+   public StackArray (){
+      list = new ArrayList<E>(10);
+   }
+
+//inserts item at the top of this stack
+   public void push (E item){
+      list.add(0, item);
+   }
+      
+
+//returns the top item of this stack and removes it
+   public E pop (){
+      return list.remove(0);
+   }
+
+//returns the top item of this stack without removing it
+   public E peek (){
+      return list.get(0);
+   }
+
+//returns true if this stack contains no elements
+   public boolean isEmpty(){
+      return list.isEmpty();
+   }
+
+//additional useful methods
+
+//returns the position of item on this stack, the top positon has
+//count 1, returns -1 if item is not on this stack; 
+//compares items with equals!
+   public int contains (E item){
+      if(list.indexOf(item)!=-1)
+         return list.indexOf(item)+1;
+      else return -1;
+   }
+
+//returns a String-representation of this stack as
+//[item1, item2, ...] with item1 as the top item
+   public String toString (){
+      String s = "";
+      
+      for(int i = 0; i<list.size(); i++){
+         if( i != list.size()-1){
+            s = s+ list.get(i) + ", ";}
+         else{ s = s+ list.get(i);}
+      }
+      return "[" + s +"]";
+   }
+   
+}   
+   
+     
