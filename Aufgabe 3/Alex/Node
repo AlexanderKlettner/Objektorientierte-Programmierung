@@ -1,0 +1,17 @@
+/*************************************************** 
+Class Node: class for creating int elements as basic
+  elements for dynamic data structures
+
+UV Objektorientierte Programmierung / H.Hagenauer
+***************************************************/
+
+public class Node<E> {
+  
+  E data;
+  Node next;
+  
+  public Node (E d) {
+    data = d;
+    next = null;
+  }
+}
