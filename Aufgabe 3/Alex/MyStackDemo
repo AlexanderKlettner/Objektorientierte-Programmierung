@@ -1,0 +1,176 @@
+public class MyStackDemo{
+   public static void main(String[] args){
+   StackArray<Integer> demostackInteger = new StackArray<Integer>();
+   StackArray<String> demostackString = new StackArray<String>();
+   StackArray<Character> demostackCharacter = new StackArray<Character>();
+   StackDynamic<Integer> demostackInteger1 = new StackDynamic<Integer>();
+   StackDynamic<String> demostackString1 = new StackDynamic<String>();
+   StackDynamic<Character> demostackCharacter1 = new StackDynamic<Character>();
+   String alph = "abcdefghijklmnopqrstuvwxyz"; // I need that String for filling the Character Stacks   
+   
+   //are the stacks empty??
+   System.out.println("Are the stacks empty?");
+   System.out.println(demostackInteger.isEmpty());
+   System.out.println(demostackString.isEmpty());
+   System.out.println(demostackCharacter.isEmpty());
+   System.out.println(demostackInteger1.isEmpty());
+   System.out.println(demostackString1.isEmpty());
+   System.out.println(demostackCharacter1.isEmpty());
+   
+   //filling the stacks with the push-methode
+   for(int i = 0; i<=1000; i++){
+      demostackInteger.push((int)(Math.random()*1000));
+   }  
+   
+   for(int i = 0; i<=1000; i++){
+      demostackString.push("hallo"+i);
+   }  
+   
+   for(int i = 0; i<=1000; i++){
+      demostackCharacter.push(alph.charAt((int) (Math.random()*25)));
+   }  
+
+   for(int i = 0; i<=1000; i++){
+      demostackInteger1.push((int)(Math.random()*1000));
+   }  
+   
+   for(int i = 0; i<=1000; i++){
+      demostackString1.push("hallo"+i);
+   }  
+   
+   for(int i = 0; i<=1000; i++){
+      demostackCharacter1.push(alph.charAt((int) (Math.random()*25)));
+   }
+   
+   //did it work? testing the toString-method
+    
+   //is the first element on the first position? testing the contains-method & the peek-method
+   System.out.println("----------------------------------------------------------------------------");
+   System.out.println();
+   System.out.println("After filling the stacks + checking if the first element is on the first position: ");
+   
+   System.out.println(demostackInteger.toString());
+   System.out.println(demostackInteger.peek() + " is on position " + demostackInteger.contains(demostackInteger.peek()));   
+   System.out.println(demostackString.toString());
+   System.out.println(demostackString.peek() + " is on position " + demostackString.contains(demostackString.peek()));   
+   System.out.println(demostackCharacter.toString());
+   System.out.println(demostackCharacter.peek() + " is on position " + demostackCharacter.contains(demostackCharacter.peek()));   
+   System.out.println(demostackInteger1.toString());
+   System.out.println(demostackInteger1.peek() + " is on position " + demostackInteger1.contains(demostackInteger1.peek()));   
+   System.out.println(demostackString1.toString());
+   System.out.println(demostackString1.peek() + " is on position " + demostackString1.contains(demostackString1.peek()));   
+   System.out.println(demostackCharacter1.toString());
+   System.out.println(demostackCharacter1.peek() + " is on position " + demostackCharacter1.contains(demostackCharacter1.peek()));   
+   
+
+   
+   //random push,pop & peek Method's (2:2:1, ~1000 Operations)
+   
+   System.out.println("----------------------------------------------------------------------------");
+   System.out.println();
+   System.out.println("random push,pop & peek Method's (2:2:1, ~1000 Operations): ");
+   
+   for(int i = 0; i<1000; i++){
+      double x = Math.random();
+      if(x <=0.4){
+         if(demostackInteger.isEmpty()){
+            i=i-1;
+         }else{demostackInteger.pop();}
+      }else if(x<=0.8){
+         demostackInteger.push(-1);
+      }else{
+         if(demostackInteger.isEmpty()){
+            i=i-1;
+         }else{demostackInteger.peek();}
+      }
+   }
+   
+   System.out.println(demostackInteger.toString());
+   
+      for(int i = 0; i<1000; i++){
+      double x = Math.random();
+      if(x <=0.4){
+         if(demostackString.isEmpty()){
+            i=i-1;
+         }else{demostackString.pop();}
+      }else if(x<=0.8){
+         demostackString.push("-1");
+      }else{
+         if(demostackString.isEmpty()){
+            i=i-1;
+         }else{demostackString.peek();}
+      }
+   }
+   
+   System.out.println(demostackString.toString()); //toString-method wouldn't be necessary
+   
+   for(int i = 0; i<1000; i++){
+      double x = Math.random();
+      if(x <=0.4){
+         if(demostackCharacter.isEmpty()){
+            i=i-1;
+         }else{demostackCharacter.pop();}
+      }else if(x<=0.8){
+         demostackCharacter.push('!');
+      }else{
+         if(demostackCharacter.isEmpty()){
+            i=i-1;
+         }else{demostackCharacter.peek();}
+      }
+   }
+   
+   System.out.println(demostackCharacter.toString());
+   
+   for(int i = 0; i<1000; i++){
+      double x = Math.random();
+      if(x <=0.4){
+         if(demostackInteger1.isEmpty()){
+            i=i-1;
+         }else{demostackInteger1.pop();}
+      }else if(x<=0.8){
+         demostackInteger1.push(-1);
+      }else{
+         if(demostackInteger1.isEmpty()){
+            i=i-1;
+         }else{demostackInteger1.peek();}
+      }
+   }
+   
+   System.out.println(demostackInteger1.toString());
+   
+      for(int i = 0; i<1000; i++){
+      double x = Math.random();
+      if(x <=0.4){
+         if(demostackString1.isEmpty()){
+            i=i-1;
+         }else{demostackString1.pop();}
+      }else if(x<=0.8){
+         demostackString1.push("-1");
+      }else{
+         if(demostackString1.isEmpty()){
+            i=i-1;
+         }else{demostackString1.peek();}
+      }
+   }
+   
+   System.out.println(demostackString1.toString()); //toString-method wouldn't be necessary
+   
+   for(int i = 0; i<1000; i++){
+      double x = Math.random();
+      if(x <=0.4){
+         if(demostackCharacter1.isEmpty()){
+            i=i-1;
+         }else{demostackCharacter1.pop();}
+      }else if(x<=0.8){
+         demostackCharacter1.push('!');
+      }else{
+         if(demostackCharacter1.isEmpty()){
+            i=i-1;
+         }else{demostackCharacter1.peek();}
+      }
+   }
+   
+   System.out.println(demostackCharacter1.toString());
+    
+   }
+}
