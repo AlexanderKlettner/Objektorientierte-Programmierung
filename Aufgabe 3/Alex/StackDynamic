@@ -15,10 +15,10 @@ public class StackDynamic<E>{
    }
 
 //returns the top item of this stack and removes it
-   public E pop (){
-      Node<E> h = stack;
-      stack = null;
-      return h.data;
+  public E pop (){
+      Node<E> h = stack.next;
+      stack = h;
+      return stack.data;
    }
 
 //returns the top item of this stack without removing it
