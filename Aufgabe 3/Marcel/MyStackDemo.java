@@ -73,15 +73,27 @@ public class MyStackDemo {
 		System.out.println("Integer Stack: \n" + intSArray.toString());
 		System.out.println("String Stack: \n" + strSArray.toString());
 
-		
-		
+	
 		// Time Comparisons:
-//		
-//		 long begin = System.currentTimeMillis();
-//		    for (int i = 0; i < count; i ++)
-//		        runMethod();
-//		    long end = System.currentTimeMillis();
+		
+		long beginArrayList = System.currentTimeMillis();
+	    for (int i = 0; i < 1000000; i ++)
+	    	 randomOperationInt(intSArray);
+	    long endArrayList = System.currentTimeMillis();
+	    long passedArrayList = endArrayList - beginArrayList;
+	    System.out.println("Time passed for int ArrayList: " + passedArrayList);
+	    
+	    
+		long beginDStack = System.currentTimeMillis();
+	    for (int i = 0; i < 1000000; i ++)
+	    	randomOperationInt(stackInt);
+	    long endDStack = System.currentTimeMillis();
+	    long passedDStack = endDStack - beginDStack;
+	    System.out.println("Time passed for int Dynamic Stack: " + passedDStack);
+	    
+	    
 	}
+	
 
 	// Functions for random Operations:
 
