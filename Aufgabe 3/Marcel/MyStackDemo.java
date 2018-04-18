@@ -1,4 +1,4 @@
-
+// Marcel Steger
 import java.util.concurrent.ThreadLocalRandom;
 
 public class MyStackDemo {
@@ -8,9 +8,17 @@ public class MyStackDemo {
 		StackDynamic<Integer> stackInt = new StackDynamic<>();
 		StackDynamic<String> stackStr = new StackDynamic<>();
 		StackDynamic<Character> stackChar = new StackDynamic<>();
-
-
-
+		
+//		
+//		System.out.println("2 in stack? " + stackInt.contains(2));
+//		stackInt.push(2);
+//		System.out.println("2 in stack? " + stackInt.contains(2));
+//		stackInt.push(1);
+//		System.out.println("2 in stack? " + stackInt.contains(2));
+//		
+//		
+//		System.out.println(stackInt.toString());
+		
 		// 1k random operations for stackInt
 		for (int i = 0; i < 1000; i++) {
 			randomOperationInt(stackInt);
@@ -77,7 +85,7 @@ public class MyStackDemo {
 		// Time Comparisons:
 		
 		long beginArrayList = System.currentTimeMillis();
-	    for (int i = 0; i < 1000000; i ++)
+	    for (int i = 0; i < 10000000; i ++)
 	    	 randomOperationInt(intSArray);
 	    long endArrayList = System.currentTimeMillis();
 	    long passedArrayList = endArrayList - beginArrayList;
@@ -85,7 +93,7 @@ public class MyStackDemo {
 	    
 	    
 		long beginDStack = System.currentTimeMillis();
-	    for (int i = 0; i < 1000000; i ++)
+	    for (int i = 0; i < 10000000; i ++)
 	    	randomOperationInt(stackInt);
 	    long endDStack = System.currentTimeMillis();
 	    long passedDStack = endDStack - beginDStack;

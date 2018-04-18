@@ -1,4 +1,4 @@
-
+// Marcel Steger
 public class StackDynamic<E> {
 
 	private Node<E> head;
@@ -41,31 +41,16 @@ public class StackDynamic<E> {
 	// returns the position of item on this stack, the top positon has
 	// count 1, returns -1 if item is not on this stack;
 	// compares items with equals!
-	public int contains(E item) {
-
-		// Look at head, and check
-		Node<E> p = this.head;
-		Node<E> prev = null;
-		int i = 1; // Counter, which pointer is being looked at currently
-
-		if (p == null)
-			return -1; // Stack is empty
-
-		while (p != null && !p.data.equals(item)) {
-			// p != null: pointer does not point to null (meaning, its not the last element
-			// in the structure)
-			// p.data != item: Keep searching until item has been found
-			prev = p; // set previous to location to that of current pointer
-			p = p.next; // increment pointer p
-			i++; // Increment counter for position retrieval
+	public int contains (E d) {
+		 Node<E> p = head;
+		 int i = 0;
+		 while (p != null && p.data.equals(d)) {
+			 p = p.next;
+		 	 i++;
+		 }
+		 if(p != null) return i;
+		 else return -1;
 		}
-
-		if (p.data.equals(item)) {
-			// Item has been found
-			return i;
-		} else
-			return -1;
-	}
 
 	// returns a String-representation of this stack as
 	// [item1, item2, ...] with item1 as the top item
