@@ -1,0 +1,45 @@
+// Klemens Kurtz
+
+/*
+Erstellen Sie dazu ein Demoprogramm FitnessDemo, 
+welches ein Objekt der Klasse Training erzeugt und mehrere Namen und Trainingzeiten (i.A. auch mehrere Zeiten pro Name) einliest. 
+Weiters sind damit auch die oben genannten Methoden zu testen, um deren korrekte Arbeitsweise zu zeigen.
+ */
+
+
+import java.util.*;
+
+public class FitnessDemo {
+
+	public static void main(String[] args) {
+		
+		// Demo:
+		
+		Training train = new Training("Heinz", 2.0);
+		
+		train.addTraining("Heinz", 1.0); // adds another value to the list.
+		train.addTraining("Heinz", 3.0);
+		train.addTraining("Huber", 10.0);
+		train.addTraining("Huber", 20.0);
+		train.addTraining("Max", 15.0);
+		
+		System.out.println("Alle Trainingwerte: " + train.getAll("Heinz")); // returns all values.
+		System.out.println("Durchschnitt der Trainingswerte: " + train.getAverage("Heinz"));
+		System.out.println("Minimum der Trainingswerte: " + train.getMin("Heinz"));
+		System.out.println("Maximum der Trainingswerte: " + train.getMax("Heinz"));
+		System.out.println("Anzahl der eingetragenen Namen: " + train.size());
+		System.out.println("getOverallMax: " + train.getOverallMax());
+
+		
+		System.out.println();
+		
+		System.out.println("Alle Trainingwerte: " + train.getAll("Huber")); // returns all values.
+		System.out.println("Durchschnitt der Trainingswerte: " + train.getAverage("Huber"));
+		System.out.println("Minimum der Trainingswerte: " + train.getMin("Huber"));
+		System.out.println("Maximum der Trainingswerte: " + train.getMax("Huber"));
+
+		
+		
+	}
+
+}
