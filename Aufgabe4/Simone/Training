@@ -1,0 +1,93 @@
+import java.util.*;
+
+
+public class Training{
+
+private HashMap<String, ArrayList<Double>> verwaltung; 
+
+public Training(){
+   verwaltung = new HashMap<String, ArrayList<Double>>(); //Konstruktor richtig aufgebaut?
+}
+
+//eine weitere Trainingszeit zum gegebenen Namen hinzufügen
+public void addTraining(String gegname, double einzelzeit){
+   ArrayList<Double> zeitList = verwaltung.get(gegname);
+   
+   //if list does not exist create it
+   if(zeitList == null){
+      zeitList = new ArrayList<Double>();
+      zeitList.add(einzelzeit);
+      verwaltung.put(gegname, zeitList);
+   } else {
+   
+   //add item
+      zeitList.add(einzelzeit);
+   }
+}
+
+//liefert die Liste aller Trainingszeiten des gegebenen Namens
+
+public ArrayList<Double> getAll(String gegname){
+   ArrayList<Double> allName = verwaltung.get(gegname);
+   
+   return allName;
+}
+
+//liefert die durchschnittliche Trainingszeit zum gegebenen Namen
+
+public double getAverage(String gegname){
+   ArrayList<Double> allName = verwaltung.get(gegname);
+   double average;
+   double sum = 0;
+   
+   for(int i = 0; i < allName.size(); i++){
+      sum = sum + allName.get(i);
+      }
+   average = sum/allName.size();
+   
+   return average;
+   
+}
+
+//liefert die minimale Trainingszeit zum gegebenen Namen
+
+public double getMin(String gegname){
+   ArrayList<Double> minList = verwaltung.get(gegname);
+   
+   double min = Collections.min(minList);
+   return min;
+}
+
+//liefert die maximale Trainingszeit zum gegebenen Namen
+
+public double getMax(String gegname){
+   ArrayList<Double> maxList = verwaltung.get(gegname);
+   
+   double max = Collections.max(maxList);
+   return max;
+}
+
+//Anzahl der eingetragenen Namen
+public int size (){
+   ArrayList<String> namesListall = new ArrayList<String>(verwaltung.keySet());
+   
+   return namesListall.size();
+   }
+
+//liefert die maximale Trainingszeit aller eingetragenen Zeiten
+// zu allen Namen
+
+public double getOverallMax(){
+   ArrayList<String> namesListall = new ArrayList<String>(verwaltung.keySet());
+   ArrayList<Double> allMax = new ArrayList<Double>(); 
+   
+   for(String name:namesListall){
+      ArrayList<Double> maxList = verwaltung.get(name);
+   
+      allMax.add(Collections.max(maxList));
+   }
+   
+   return Collections.max(allMax);
+}
+
+}
