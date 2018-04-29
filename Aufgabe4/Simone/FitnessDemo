@@ -1,0 +1,43 @@
+import java.util.*;
+
+public class FitnessDemo {
+
+	public static void main(String[] args) {
+		
+		// Demo:
+		
+		Training demo = new Training();
+      
+      //adding values to hashmap
+		
+		demo.addTraining("Fritz", 25.55); 
+		demo.addTraining("Lisa", 12.03);
+		demo.addTraining("Michael", 30.0);
+		demo.addTraining("Thomas", 18.70);
+		demo.addTraining("Luisa", 26.12);
+		demo.addTraining("Michael", 24.5);
+      demo.addTraining("Lisa", 14.0);
+      
+      //testing methods 
+      System.out.println("Minimum der Trainingswerte: " + demo.getMin("Michael"));
+		System.out.println("Maximum der Trainingswerte: " + demo.getMax("Michael"));
+		System.out.println("Alle Trainingwerte: " + demo.getAll("Michael")); 
+		System.out.println("Durchschnitt der Trainingswerte: " + demo.getAverage("Michael"));
+		System.out.println("Anzahl der eingetragenen Namen: " + demo.size());
+		System.out.println("getOverallMax: " + demo.getOverallMax());
+
+		
+		System.out.println();
+		
+		System.out.println("Minimum der Trainingswerte: " + demo.getMin("Lisa"));
+		System.out.println("Maximum der Trainingswerte: " + demo.getMax("Lisa"));
+		System.out.println("Alle Trainingwerte: " + demo.getAll("Lisa")); 
+		System.out.println("Durchschnitt der Trainingswerte: " + demo.getAverage("Lisa"));
+		System.out.println("Anzahl der eingetragenen Namen: " + demo.size());
+		System.out.println("getOverallMax: " + demo.getOverallMax());
+
+		
+		
+	}
+
+}
