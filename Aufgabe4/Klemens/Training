@@ -1,0 +1,99 @@
+// Klemens Kurtz
+
+/* 
+Erstellen Sie die Klasse Training um die taglichen Trainingszeiten einer Gruppe von Personen (z.B. fur ein Monat) zu verwalten.
+Der Name einer Person ist der Schlussel. Alle Namen sollen in einer HashMap verwaltet werden. 
+Zu jeder Person gehort auch eine Liste von Trainingszeiten. 
+So eine Liste kann beliebig viele Eintrage enthalten (auch keinen) - somit eignet sich dafur etwa eine ArrayList (jeweils eine pro Person).
+Die Klasse Training soll nebem dem default-Konstruktor folgende Methoden anbieten:
+Uberlegen Sie sich zu diesen Methoden geeignete Parameter und eventuelle Ruckgabewerte. 
+Es konnen auch zusatzliche sinnvole Methoden implementiert werden.
+*/
+
+import java.util.*;
+import java.util.Map.Entry;
+
+public class Training {
+	HashMap<String, ArrayList<Double>> training = new HashMap<String, ArrayList<Double>>();
+	
+		
+	public Training(String name, double item) {
+		ArrayList<Double> itemsList = new ArrayList<Double>();
+		itemsList.add(item);
+		training.put(name, itemsList);
+	}
+	
+	//eine weitere Trainingszeit zum gegebenen Namen hinzufugen
+	public synchronized void addTraining (String name, Double item){
+	    ArrayList<Double> itemsList = training.get(name);
+
+	    // if list does not exist create it
+	    if(itemsList == null) {
+	         itemsList = new ArrayList<Double>();
+	         itemsList.add(item);
+	         training.put(name, itemsList);
+	    } else {
+	        // add if item is not already in list
+	        if(!itemsList.contains(item)) itemsList.add(item);
+	    }
+	}
+	
+
+	//liefert die Liste aller Trainingszeiten des gegebenen Namens
+	public ArrayList<Double> getAll (String name){
+		return training.get(name);
+	}
+	
+	//liefert die durchschnittliche Trainingszeit zum gegebenen Namen
+	public double getAverage (String name){
+		double size = training.get(name).size();
+		double sum = 0;
+		Iterator<Double> it = training.get(name).iterator();
+			while(it.hasNext())
+				sum += it.next();
+		
+		double avg = sum / size;
+		return avg;
+	}
+
+	
+	//liefert die minimale Trainingszeit zum gegegenen Namen
+	public double getMin (String name){
+		double min = training.get(name).get(0);
+		
+		for(int i = 0; i < training.get(name).size(); i++) {
+			if(training.get(name).get(i) < min)
+				min = training.get(name).get(i);
+		}
+		return min;
+	}
+	
+	//liefert die maximale Trainingszeit zum gegeben Namen
+	public double getMax (String name){
+		double max = training.get(name).get(0);
+		
+		for(int i = 0; i < training.get(name).size(); i++) {
+			if(training.get(name).get(i) > max)
+				max = training.get(name).get(i);
+		}
+		return max;
+	}
+	
+	//Anzahl der eingetragenen Namen
+	public int size (){
+		return training.size();
+	}
+
+	//liefert maximale Trainingszeit aller eingetragenen Zeiten // zu allen Namen
+	public double getOverallMax (){
+		double max = 0.0;
+		for(Map.Entry<String, ArrayList<Double>> entry : training.entrySet()) {
+			ArrayList<Double> list = entry.getValue();
+				for(int i = 0; i < list.size(); i++) {
+					if(list.get(i) > max)
+						max = list.get(i);
+				}
+		}
+		return max;
+	}
+}
