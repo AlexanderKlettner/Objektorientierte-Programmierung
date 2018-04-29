@@ -6,7 +6,7 @@ public class Training{
 private HashMap<String, ArrayList<Double>> verwaltung; 
 
 public Training(){
-   verwaltung = new HashMap<String, ArrayList<Double>>(); //Konstruktor richtig aufgebaut?
+   verwaltung = new HashMap<String, ArrayList<Double>>(); 
 }
 
 //eine weitere Trainingszeit zum gegebenen Namen hinzufügen
