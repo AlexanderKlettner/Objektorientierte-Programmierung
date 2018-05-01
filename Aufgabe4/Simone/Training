@@ -22,6 +22,7 @@ public void addTraining(String gegname, double einzelzeit){
    
    //add item
       zeitList.add(einzelzeit);
+      verwaltung.put(gegname, zeitList);
    }
 }
 
