@@ -4,11 +4,21 @@ import java.io.*;
 public class WordSearch {
 	public static String search (String inFileName, String word)
 		    throws FileNotFoundException, IOException{
+		  
 		
-		//For now only copies the file, and gives backe "word"
-	    String outFileName = "textoutMarcel.txt";
+		
+		// append the "word" thing
+
+	    String[] nameParts = inFileName.split("\\.");
+	    String suffix = nameParts[nameParts.length - 1];
+	    String rest = "";
 	    
-	  
+	    for(int i = 0; i < nameParts.length - 1; i ++) {
+	    	rest = rest + nameParts[i];
+	    }
+
+	    String outFileName = rest + "_" + word + "." + suffix;
+	    
 	        BufferedReader in = null;
 	        BufferedWriter out = null;
 	    	
@@ -26,14 +36,16 @@ public class WordSearch {
 	            Writer w = new OutputStreamWriter(outStream);
 	            //additional buffer efficient output
 	            out = new BufferedWriter(w);
-
 	            
-          	  String match = "Wort|\\SWort|Wort\\S|\\SWort\\S";
-          	  System.out.println(match);
+	          out.write("Zeilen mit dem Wort: " + word);
+	            
+          	  String match = word + "|\\S" + word + "|" + word + "\\S|\\S"  + word + "\\S";
+//          	  System.out.println(match);
 	            
 	            
 	            String line;
 	            int lineNumber = 0;
+	            boolean foundNothing = true;
 	            while (in.ready()){
 	              lineNumber++;
 	              line = in.readLine(); //reading next line
@@ -48,25 +60,28 @@ public class WordSearch {
 	              while(wordFound == false && wordNr < parts.length) {
 	            	  //parts[i].matches("\\Shier\\S")
 	            	  wordFound = parts[wordNr].matches(match); // \\S to account for symbols like .(/\[ etc.
-	            	  System.out.println(parts[wordNr]);
+//	            	  System.out.println(parts[wordNr]);
 
-    			  	  System.out.println(wordFound);
+//    			  	  System.out.println(wordFound);
 	            	  if(wordFound) {
+	            		  foundNothing = false;
 	            		  //write file
 	            		  //if word was found, then write the sentence and tell us which line number it was in
-		            	  String writeMe = lineNumber + ": " + line;
-		            	  if(in.ready()) {
-		            		  //if theres another line to read in insert linebreak
-		            		  // problem: may be a linebreak at the end of the file, where i dont need one
-		            		  writeMe += "\n";
-		            	  }
-		            	  System.out.println(writeMe);
+		            	  String writeMe = "\n" + lineNumber + ": " + line;
+//		            	  System.out.println(writeMe);
 		            	  out.write(writeMe);      //write the index and the sentence that contained the word
 	            	  }else wordNr++; //if not found, continue to check next word
 	              }
+	              
+	            
 	                          
 	            }
 	            System.out.println("Output to " + outFileName + " finished");
+	            
+	            if(foundNothing == true) {
+	            	  System.out.println("No match");
+	            	  out.write("\nKeine Übereinstimmungen gefunden.");
+	              }
 	            
 	        }
 	    	
