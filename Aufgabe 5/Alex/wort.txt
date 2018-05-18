@@ -1,0 +1,9 @@
+Erstellen Sie die Klasse WordSearch,
+welche in einer Textdatei ein anzugebendes Wort sucht.
+Alle Zeilen, die dieses Wort mindestens einmal enthalten,
+sollen in eine Textdatei mit speziellem Namen geschrieben werden.
+„(Wort)" Zusatzzeile1
+„Wort" Zusatzzeile2
+Wortanfang Zusatzzeile3
+Worte Zusatzzeile4
+Wort9 Zusatzzeile5
