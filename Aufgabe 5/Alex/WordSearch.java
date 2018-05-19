@@ -6,12 +6,34 @@ public class WordSearch{
     
       String outFileName = "";    
       FileReader in = new FileReader(inFileName);
+      //outFileName wird hier noch angepasst.
+      //Die seltenen Zeichen brauche ich als Identifikator der Stelle, an der _word eingefügt werden soll.
+      String selteneZeichen ="-+*~#\\$§%{&]=?/€[<>|}!'@"; 
+      int j=0;
+      //Sollte inFileName wirklich alle seltenen Zeichen enthalten, wird um Umbenennung gebeten
+      for(int i = 0;i<selteneZeichen.length();i++){
+         if(inFileName.contains(selteneZeichen)){
+            System.out.println("Nenn die Datei um!");
+            break;
+         }
+         //Die Position des ersten seltenen Zeichens, welches nicht in inFileName enthalten ist, wird in j gespeichert
+         if(inFileName.indexOf(selteneZeichen.charAt(i))==-1){
+            j = i;
+            break;
+         }
+      }   
       
-      //der Name der Datei, die schlussendlich erzeugt wird, wird hier festgelegt
-      if(inFileName.contains(".")){
-         outFileName = inFileName.replace(".","_"+word+".");
-      }else outFileName = inFileName + "_" + word;
-      
+      //Punkte könnten in Dateinamen öfters auftauchen. Ich suche hier den letzten Punkt.
+      int letzterPunkt = inFileName.lastIndexOf(".");
+      //inFileName wird in ein Array umgewandelt. Jedes Array-Element enthält einen Character von inFileName
+      char[] inFileNameChar = inFileName.toCharArray();
+      //Der letzte Punkt wird durch das seltene Zeichen ersetzt, das nicht in inFileName vorkommt.
+      inFileNameChar[letzterPunkt] = selteneZeichen.charAt(j);
+      //Das bearbeitete Array wird in einen String kopiert.
+      String inFileNameFertig = String.copyValueOf(inFileNameChar);
+      //Das seltene Zeichen in inFileNameFertig wird durch _word. ersetzt und als outFileName gespeichert
+      outFileName = inFileNameFertig.replaceAll(Character.toString(selteneZeichen.charAt(j)),"_"+word+".");
+      //FileWriter mit korrektem Namen wird erzeugt.
       FileWriter out = new FileWriter(outFileName);
       BufferedReader brIn = new BufferedReader(in);
       
@@ -64,7 +86,11 @@ public class WordSearch{
         }
       brIn.close();
       out.close(); 
-               
+           
+      
+       
     return "done";
   }
 }      
+         
+      
