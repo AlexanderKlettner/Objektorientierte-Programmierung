@@ -6,16 +6,8 @@ public class WordSearch {
 	public static String search(String inFileName, String word) throws FileNotFoundException, IOException {
 
 		// append the "word" thing
-
-		String[] nameParts = inFileName.split("\\.");
-		String suffix = nameParts[nameParts.length - 1];
-		String rest = "";
-
-		for (int i = 0; i < nameParts.length - 1; i++) {
-			rest = rest + nameParts[i];
-		}
-
-		String outFileName = rest + "_" + word + "." + suffix;
+		String[] tokens = inFileName.split("\\.(?=[^\\.]+$)");
+		String outFileName = tokens[0] + "_" + word + "." + tokens[1];
 
 		BufferedReader in = null;
 		BufferedWriter out = null;
@@ -66,7 +58,7 @@ public class WordSearch {
 
 			if (foundNothing == true) {
 				System.out.println("No match");
-				out.write("\nKeine Übereinstimmungen gefunden.");
+				out.write("\nKeine Ãœbereinstimmungen gefunden.");
 			}
 
 		}
