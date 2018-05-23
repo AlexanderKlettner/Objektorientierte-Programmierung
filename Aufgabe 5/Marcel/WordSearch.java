@@ -10,7 +10,7 @@ public class WordSearch {
 		String rest = "";
 
 		for (int i = 0; i < nameParts.length - 1; i++) {
-			rest = rest + nameParts[i];
+			rest = rest + nameParts[i] + ".";
 		}
 
 		String outFileName = rest + "_" + word + "." + suffix;
