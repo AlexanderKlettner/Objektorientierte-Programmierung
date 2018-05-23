@@ -36,9 +36,14 @@ public class WordSearch{
       
         FileWriter output = new FileWriter(outFileName);
         
+        word = word + " ";
         
         BufferedReader in = null;
         BufferedWriter out = null;
+        
+        //um den Zeilenumbruch unabhängig vom Betriebssystem zu machen,
+        //erfragt man sich hier den line separator
+        String sep = System.getProperty("line.separator");
          
         try {
            //abstract base class for representing an input stream of bytes
@@ -57,10 +62,12 @@ public class WordSearch{
            
            //First Line in Outputfile
            out.write("Zeile mit dem Wort: " + word);
+           out.write(sep);
            
            //Dealing with matching partial Strings
            String match = "\\b" + word + "\\b";
            Pattern pattern = Pattern.compile(match);
+      
            
            Scanner scan = new Scanner(new File(inFileName));
            int m = 0; 
@@ -69,13 +76,15 @@ public class WordSearch{
                m = m+1;
                String line = scan.nextLine().toString();
                if(line.contains(word)){
-                  String writeNow = "\n" + m + ": " + line;
+                  String writeNow = "\nZeile " + m + ": " + line;
                   out.write(writeNow);
+                  out.write(sep);
                   System.out.println("Zeile " + m + ": " + line);
                }
                else{
-                 System.out.println("Keine Uebereinstimmungen"); 
-                 out.write("\nKeine Uebereinstimmung gefunden.");
+                 System.out.println("Zeile " + m + ": " + "Keine Uebereinstimmung gefunden."); 
+                 out.write("\nZeile " + m + ": " + "Keine Uebereinstimmung gefunden.");
+                 out.write(sep);
                }
            }
 
