@@ -4,8 +4,6 @@ UV Objektorientierte Programmierung
 Simone Mueller
 ***************************************************/
 import java.io.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.Scanner;
 
 
@@ -14,6 +12,14 @@ public class WordSearch{
       throws FileNotFoundException, IOException{
         
         int lenginp = inFileName.length(); 
+        
+        String wordleer = word + " ";
+        String wordausr = word + "!";
+        String wordpkt = word + ".";
+        String wordsemi = word + ";";
+        String wordkomm = word + ",";
+        String worddpkt = word + ":";
+        String wordfrag = word + "?";
       
         String outFileName = "";
         String outFileRest = "";
@@ -36,7 +42,7 @@ public class WordSearch{
       
         FileWriter output = new FileWriter(outFileName);
         
-        word = word + " ";
+        
         
         BufferedReader in = null;
         BufferedWriter out = null;
@@ -63,10 +69,6 @@ public class WordSearch{
            //First Line in Outputfile
            out.write("Zeile mit dem Wort: " + word);
            out.write(sep);
-           
-           //Dealing with matching partial Strings
-           String match = "\\b" + word + "\\b";
-           Pattern pattern = Pattern.compile(match);
       
            
            Scanner scan = new Scanner(new File(inFileName));
@@ -75,7 +77,12 @@ public class WordSearch{
            while(scan.hasNext()){
                m = m+1;
                String line = scan.nextLine().toString();
-               if(line.contains(word)){
+               
+               int laengezeile = line.length();
+               int laengeword = word.length();
+               
+               
+               if(laengezeile == laengeword || line.contains(wordleer) || line.contains(wordausr) || line.contains(wordpkt) || line.contains(wordsemi) || line.contains(wordkomm) || line.contains(worddpkt) || line.contains(wordfrag)){
                   String writeNow = "\nZeile " + m + ": " + line;
                   out.write(writeNow);
                   out.write(sep);
