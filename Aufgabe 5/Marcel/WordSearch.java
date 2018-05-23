@@ -1,3 +1,4 @@
+// Constantin Thiel, Marcel Steger
 import java.io.*;
 
 public class WordSearch {
@@ -68,7 +69,7 @@ public class WordSearch {
 			System.out.println("Output to " + outFileName + " finished");
 			if (foundNothing == true) {
 				System.out.println("No match");
-				out.write("\nKeine Übereinstimmungen gefunden.");
+				out.write("\nKeine Uebereinstimmungen gefunden.");
 			}
 
 		}
