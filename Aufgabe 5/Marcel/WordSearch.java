@@ -1,12 +1,9 @@
 import java.io.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class WordSearch {
 	public static String search(String inFileName, String word) throws FileNotFoundException, IOException {
 
 		// append the "word" thing
-
 		String[] nameParts = inFileName.split("\\.");
 		String suffix = nameParts[nameParts.length - 1];
 		String rest = "";
@@ -35,52 +32,59 @@ public class WordSearch {
 			// additional buffer efficient output
 			out = new BufferedWriter(w);
 
-			
-			//Erste Zeile im Outputfile
 			out.write("Zeilen mit dem Wort: " + word);
 
-			// Preparation for matching Strings
-			String match = "\\b" + word + "\\b"; // Matches a word boundary where a word character is [a-zA-Z0-9_]
-			// Findet "Wort" allerdings nicht in String "Wort9"!
-			Pattern pattern = Pattern.compile(match);
-
-			// line Variable, that gets the current line of the readin file
 			String line;
 			int lineNumber = 0;
-			boolean foundNothing = true;
+			boolean foundNothing = true; // If nothing is found, this remains true, and then we write some info into the
+											// output file
 			while (in.ready()) {
 				lineNumber++;
 				line = in.readLine(); // reading next line
-				// Checking if line contains the word
-				Matcher m = pattern.matcher(line);
 
-				if (m.find() == true) {
-					foundNothing = false;
-					//Wenn Wort vorkam, dann schreibe die Zeile
-					String writeMe = "\n" + lineNumber + ": " + line;
-					out.write(writeMe); // write the index and the sentence that contained the word
+				// replace eveyrthing this is not a letter with an empty space
+				String cleanedLine = line.replaceAll("[^a-zA-Z]", " ");
+
+
+			
+				// Split by whitespaces to get every word
+				String[] parts = cleanedLine.split(" "); 
+
+				// Checking if line contains the word
+				int counter = 0;
+				boolean wordFound = false;
+				while (counter < parts.length && wordFound == false) {
+					boolean match = parts[counter].equals(word);
+					if (match) {
+						wordFound = true;
+						foundNothing = false;
+						String writeMe = "\n" + lineNumber + ": " + line;
+						out.write(writeMe);
+					} else
+						counter++;
 				}
 
 			}
 			System.out.println("Output to " + outFileName + " finished");
-
 			if (foundNothing == true) {
 				System.out.println("No match");
 				out.write("\nKeine Übereinstimmungen gefunden.");
 			}
 
 		}
-
 		// may be thrown by FileReader
 		catch (FileNotFoundException fnf) {
+			// System.out.println(">> FileNotFoundException: " + fnf.getMessage());
+
+			// throw new ArithmeticException("Student is not eligible for registration");
 			throw new FileNotFoundException(">> FileNotFoundException: " + fnf.getMessage());
 		}
-
 		// my be thrown by FileReader, FileWriter
 		catch (IOException io) {
 			throw new IOException(">> IOException: " + io.getMessage());
+			// System.out.println(">> IOException: " + io.getMessage());
+			// throw new IOException();
 		}
-
 		// these instructions are always executed
 		finally {
 			if (out != null)

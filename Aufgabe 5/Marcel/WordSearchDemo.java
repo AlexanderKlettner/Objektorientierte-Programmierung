@@ -5,25 +5,8 @@ public class WordSearchDemo {
 	public static void main (String[] args) {	
 		
 		
-		//Mit Orginal text File aus Angabe
-		
-		//Einmal mit "Wort"
 		try{
-			WordSearch.search("textin.txt", "Wort");
-		}
-		catch(FileNotFoundException fnf) {
-	        System.out.println();
-			System.out.println(fnf.getMessage());
-		}
-	
-		catch(IOException io) {
-	        System.out.println();
-			System.out.println(io.getMessage());
-		}
-		
-		//Einmal mit "Wor"
-		try{
-			WordSearch.search("textin.txt", "Wor");
+			WordSearch.search("textorig.txt", "Wort");
 		}
 		catch(FileNotFoundException fnf) {
 	        System.out.println();
@@ -37,8 +20,9 @@ public class WordSearchDemo {
 		
 		
 		
-		// Modifziziertes File, um es etwas schwerer zu machen "(Wort)" und "Worte" enthalten
-		//Einmal mit "Wort"
+		
+		//Schwierigeres Text File
+		
 		try{
 			WordSearch.search("text_modified.txt", "Wort");
 		}
@@ -51,19 +35,5 @@ public class WordSearchDemo {
 	        System.out.println();
 			System.out.println(io.getMessage());
 		}
-		//Einmal mit "Wor"
-		try{
-			WordSearch.search("text_modified.txt", "Wor");
-		}
-		catch(FileNotFoundException fnf) {
-	        System.out.println();
-			System.out.println(fnf.getMessage());
-		}
-	
-		catch(IOException io) {
-	        System.out.println();
-			System.out.println(io.getMessage());
-		}
-		
 	}
 }
