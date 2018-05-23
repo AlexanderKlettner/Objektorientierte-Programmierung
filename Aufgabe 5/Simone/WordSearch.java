@@ -71,6 +71,7 @@ public class WordSearch{
                if(line.contains(word)){
                   String writeNow = "\n" + m + ": " + line;
                   out.write(writeNow);
+                  System.out.println("Zeile " + m + ": " + line);
                }
                else{
                  System.out.println("Keine Uebereinstimmungen"); 
