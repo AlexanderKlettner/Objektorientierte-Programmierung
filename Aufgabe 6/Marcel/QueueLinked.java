@@ -5,11 +5,13 @@ public class QueueLinked<E>{
 
 	private Node<E> head;
 	private Node<E> tail;
+	private int size;
 
 	// default constructor for creating an empty queue
 	public QueueLinked() {
 		this.head = null;
 		this.tail = null;
+		this.size = 0;
 	}
 
 	// inserts item at the end of the queue
@@ -20,6 +22,7 @@ public class QueueLinked<E>{
 		} else {
 			this.tail.next = p; // old last one points to new last one
 			this.tail = p; // set new last one
+			this.size++;
 		}
 	}
 
@@ -27,26 +30,33 @@ public class QueueLinked<E>{
 	// //returns null if queue is empty
 	public E dequeue() {
 		// Get current head:
-		Node<E> helper = this.head;
+		if(this.size()  == 0) return null;
+		else {
+			Node<E> helper = this.head;
+			// Change head
+			this.head = this.head.next;
+			this.size--;
+			return helper.data;
 
-		// Change head
-		this.head = this.head.next;
-
-		return helper.data;
+		}
 
 	}
 
 	// //returns the number of elements in the queue
-	public int size() {
-		Node<E> helper = this.head;
-		int counter = 0;
-		while (helper != null) {
-			helper = helper.next;
-			counter++;
-		}
-		return counter;
-	}
+//	public int size() {
+//		Node<E> helper = this.head;
+//		int counter = 0;
+//		while (helper != null) {
+//			helper = helper.next;
+//			counter++;
+//		}
+//		return counter;
+//	}
 
+	public int size() {
+		//Decided to do it this way, so enq/dequeue dont always have to parse through the whole structure
+		return this.size;
+	}
 	// //test if queue is empty
 	public boolean isEmpty() {
 		return this.size() == 0;
@@ -60,20 +70,20 @@ public class QueueLinked<E>{
 
 		// "Loop over all the pointers"
 
-		Node<E> p = head;
-		if (p == null) {
+		Node<E> helper = head;
+		if (helper == null) {
 			return "Empty Stack";
 		}
 
-		while (p != null) {
+		while (helper != null) {
 
-			if (p.next != null) {
-				result = result + p.data + ", ";
+			if (helper.next != null) {
+				result = result + helper.data + ", ";
 			} else {
 				// last data point, does not get "," afterwards
-				result = result + p.data;
+				result = result + helper.data;
 			}
-			p = p.next;
+			helper = helper.next;
 
 		}
 
@@ -120,7 +130,9 @@ public class QueueLinked<E>{
 		
 		
 	}
-	// MyIterator class:
+	
+	
+	
 	public MyIterator<E> getIterator(){
 		myDynIterator<E> it = new myDynIterator<>();
 		return it;
