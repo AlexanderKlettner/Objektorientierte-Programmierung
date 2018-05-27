@@ -14,6 +14,11 @@ public class QueueArray<E> {
 	public void enqueue(E item) {
 		this.queue.add(item);
 	}
+	
+	
+	public E peek() {
+		return this.queue.get(0);
+	}
 //
 //
 //	//returns the head of the queue and deletes it from the queue;

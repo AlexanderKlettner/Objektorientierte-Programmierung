@@ -5,13 +5,13 @@ public class QueueLinked<E>{
 
 	private Node<E> head;
 	private Node<E> tail;
-	private int size;
+	private int size; //Chose to do it this way, because always calculating the size takes too long and slows down queue
 
 	// default constructor for creating an empty queue
 	public QueueLinked() {
 		this.head = null;
 		this.tail = null;
-		this.size = 0;
+		this.size = 0; //Chose to do it this way, because always calculating the size takes too long and slows down queue
 	}
 
 	// inserts item at the end of the queue
@@ -19,6 +19,7 @@ public class QueueLinked<E>{
 		Node<E> p = new Node<>(item);
 		if (this.size() == 0) {
 			this.tail = this.head = p;
+			this.size++;
 		} else {
 			this.tail.next = p; // old last one points to new last one
 			this.tail = p; // set new last one
@@ -26,6 +27,10 @@ public class QueueLinked<E>{
 		}
 	}
 
+		//returns top element of queue (head) without removing it
+	public E peek() {
+		return this.head.data;
+	}
 	// //returns the head of the queue and deletes it from the queue;
 	// //returns null if queue is empty
 	public E dequeue() {
@@ -54,7 +59,7 @@ public class QueueLinked<E>{
 //	}
 
 	public int size() {
-		//Decided to do it this way, so enq/dequeue dont always have to parse through the whole structure
+		//Decided to do it this way, so enqueue/dequeue dont always have to parse through the whole structure
 		return this.size;
 	}
 	// //test if queue is empty
