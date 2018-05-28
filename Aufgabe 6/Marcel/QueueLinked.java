@@ -111,7 +111,7 @@ public class QueueLinked<E>{
 	}
 
 	
-	private class myDynIterator<T> implements MyIterator <T>{
+	private class myDynIterator<T> implements MyIterator <E>{
 		
 		private Node<E> h;
 		
@@ -123,10 +123,10 @@ public class QueueLinked<E>{
 			return this.h != null;
 		}
 		
-		public T getNext() {
-			T dat = null;
+		public E getNext() {
+			E dat = null;
 			if(this.hasNext()) {
-				dat = (T) this.h.data;
+				dat =  this.h.data;
 				this.h = this.h.next;
 			}
 			return dat;

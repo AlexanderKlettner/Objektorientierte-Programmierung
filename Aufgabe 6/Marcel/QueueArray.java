@@ -50,7 +50,7 @@ public class QueueArray<E> {
 		return this.queue.toString();
 	}
 //
-	private class myALIterator<T> implements MyIterator <T>{
+	private class myALIterator<T> implements MyIterator <E>{
 		
 		private ArrayList<E> AL;
 		private int counter;
@@ -67,10 +67,10 @@ public class QueueArray<E> {
 			return this.counter < this.AL.size() - 1;
 		}
 		
-		public T getNext() {
+		public E getNext() {
 			if(this.hasNext()) {
 				this.counter++;
-				return (T) this.AL.get(this.counter);
+				return this.AL.get(this.counter);
 			}else return null;
 		}
 	}
