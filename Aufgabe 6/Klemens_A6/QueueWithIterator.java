@@ -5,8 +5,8 @@ import java.util.concurrent.ThreadLocalRandom;
 public class QueueWithIterator {
 
 	public static void main(String[] args) {
-		int min = 5;
-		int max = 10;
+		int min = 10001;
+		int max = 15000;
 		int randNum = ThreadLocalRandom.current().nextInt(min, max + 1);
 				
 		
@@ -22,18 +22,19 @@ public class QueueWithIterator {
 		System.out.println("QueueLinked - size: " + queue.size());
 		System.out.println("QueueLinked - dequeue: " + queue.dequeue());		
 		System.out.println("QueueLinked - isEmpty: " + queue.isEmpty());
-		System.out.println("QueueLinked - toString: " + queue.toString());
+		//System.out.println("QueueLinked - toString: " + queue.toString());
 	
 				
 		// Test iterator:
 		MyIterator<Integer> itLinked = queue.getIterator();
 		int maxIt = 0;
+		int curr = 0;
 		while(itLinked.hasNext()) {
-			/*
-			if(maxIt < itLinked.getNext()) {
-				maxIt = itLinked.getNext();
-			}*/
-			System.out.println("QueueArray - Iterator next: " + itLinked.getNext());
+			curr = itLinked.getNext();
+			if(maxIt < curr) {
+				maxIt = curr;
+			}
+			//System.out.println("QueueArray - Iterator next: " + curr);
 		}
 		System.out.println("QueueLinked - Iterator - max: " + maxIt);
 		
@@ -51,22 +52,24 @@ public class QueueWithIterator {
 		System.out.println("QueueArray - size : " + queueArr.size());
 		System.out.println("QueueArray - dequeue: " + queueArr.dequeue());		
 		System.out.println("QueueArray - isEmpty: " + queueArr.isEmpty());
-		System.out.println("QueueArray - toString: " + queueArr.toString());
+		//System.out.println("QueueArray - toString: " + queueArr.toString());
 		
 		
 		// Test iterator:
 		MyIterator<Integer> itArr = queueArr.getIterator();
 		int maxArr = 0;
+		int currArr = 0;
 		while(itArr.hasNext()) {
-			if(maxArr < itArr.getNext()) {
-				maxArr = itArr.getNext();
+			currArr = itArr.getNext();
+			if(maxArr < currArr) {
+				maxArr = currArr;
 			}
-			System.out.println("QueueArray - Iterator next: " + itArr.getNext());
+			//System.out.println("QueueArray - Iterator next: " + currArr);
 		}
 		System.out.println("QueueArray - Iterator - max: " + maxArr);	
 		
 		
-		/*
+		
 		// time:
 		int length = 15000;
 		int runs = 6;
@@ -122,7 +125,7 @@ public class QueueWithIterator {
 			
 		}
 		
-		
+		/*
 		QueueLinked Time - 10: 0 millisec
 		QueueArray Time - 10: 0 millisec
 		
