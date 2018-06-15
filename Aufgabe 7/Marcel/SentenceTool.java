@@ -1,43 +1,61 @@
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
+
 //Umlaute
 public class SentenceTool {
 
-	ArrayList<String> list = null;
-	Iterator<String> it = null;
+
+	HashMap<Integer, ArrayList<String>> hm = null;
 
 	// constructor: reads a textfile with given fileName
 	// and creates a list of all sentences in this textfile
 	public SentenceTool(String fileName) {
-		list = new ArrayList<String>();
+		hm = new HashMap<Integer, ArrayList<String>>();
+
 		try {
 			BufferedReader in = null;
 			try {
-//				// abstract base class for representing an input stream of bytes
+				// // abstract base class for representing an input stream of bytes
 				InputStream inStream = new FileInputStream(fileName);
-//				// using a Reader for input
+				// // using a Reader for input
 				Reader r = new InputStreamReader(inStream, StandardCharsets.UTF_8); // for ä,ö, etc
-//				Reader r = new InputStreamReader(inStream); // for ä,ö, etc
-					
-//				Reader r = new InputStreamReader(inStream, "UTF-8");
-//				// additional buffer and methods for efficient input
+
 				in = new BufferedReader(r);
 
-			
-				String line;
+				String line = "";
+				int linecounter = 0;
+				int sentencecounter = 0;
 				while (in.ready()) {
+					linecounter++;
 					line = in.readLine(); // reading next line
-//					System.out.println("Satz vor dem split: " + line);
-					//Split them by ".", "!" and "?"
-//					String [] split = line.split("(?<=\\.|\\!|\\?)");
-				
-					String [] split = line.split("(?<=\\. |\\! |\\? )"); // and consecutive whitespace
-					for(String sentence: split) {
-						list.add(sentence);	
-						System.out.println(sentence);
+
+					// Now for each loop over all the lines and split them
+					// Maybe even use a HashMap for lines, and let string id be the number of the
+					// line (counter)
+					// and the second argument is a list
+
+					String[] split = line.split("(?<=\\.|\\!|\\?)"); // split by ? ! . and consecutive whitespace
+					ArrayList<String> linesentences = new ArrayList<String>(); // empty list for
+
+					// put them all seperated into the sentences list
+					for (String sentence : split) {
+						String s = sentence.trim(); //remove empty spaces that are unneccessary
+						if(s.length() > 0 ) {
+							sentencecounter++;
+							linesentences.add(s);
+						}
+
 					}
+
+					// add the senteces list together with the number of the line to the hashmap
+					hm.put(linecounter, linesentences);
 				}
+
+//				System.out.println("Total Line Count: " + linecounter);
+//				System.out.println("Total Sentence Count: " + sentencecounter);
+			
+
 			} catch (Exception e) {
 				System.out.println(">> Exception 1: " + e.getMessage());
 			}
@@ -50,46 +68,34 @@ public class SentenceTool {
 		} catch (Exception e) {
 			System.out.println(">> Exception 2: " + e.getMessage());
 		}
-		it = this.getIterator();
-	}
-	
-	public String toString() {
-		return list.toString();
 	}
 
-	// returns the number of sentences in this sentence list
+	public Set <Integer> lineSet(){
+		return hm.keySet();
+	}
+
 	 public int size() {
-		 return list.size();
+		 int size = 0;
+		 for(Integer k: lineSet()) {
+			 Iterator<String> it = lineIterator(k);
+			 while(it.hasNext()) {
+				 it.next();
+				 size ++;
+			 }
+		 }
+		 return size;
 	 }
-
-	 public Iterator<String> getIterator(){
-		 Iterator<String> it = list.iterator();
-		 return it;
-	 }
-	// returns the next sentence
-	// returns null if there is no more sentence
-	 public String nextSentence() {
-		 // old
-//		 if(hasNextSentence()) {
-//			 return list.remove(0);
-//		 }else return null;
-		 
-		 // new:
-		 if(hasNextSentence()) {
-			 return it.next();
-		 }else return null;
-		  
-		 
-	 }
-
-	// test if there exists a next sentence
-	 public boolean hasNextSentence() {
-		// old
-		// return list.size() > 0;
-		 
-		 
-		// new:
-		 return it.hasNext();
-	 }
+	 
 	
+	public Iterator<Integer> mhIterator() {
+		return hm.keySet().iterator();
+	}
+
+	public Iterator<String> lineIterator(int line_key) {
+		ArrayList<String> sentences_in_line = hm.get(line_key); // gets the arraylist
+		// that is associated with the line
+		// containing all the sentences in that line
+		return sentences_in_line.iterator(); // return iterator for this (ArrayList.iterator())
+	}
+
 }
